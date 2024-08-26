@@ -1,0 +1,52 @@
+.pagescreen{
+    padding: 4rem 2.8rem;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.pagescreen h1{
+    color: white;
+}
+
+.movies-container{
+    display: grid;
+    grid-template-columns: repeat(4,auto);
+    grid-gap :2px;
+    margin-bottom: 1.2rem;
+}
+
+.movies-container iframe{
+    transition: 0.2s ease-in-out;
+    margin-right: 0.5rem;
+}
+
+.movies-container iframe{
+    transition: 0.2s ease-in-out;
+}
+
+.movies-container iframe:hover{
+    transform: scale(1.1);
+    
+}
+
+
+@media screen and (max-width:850px) {
+
+    .movies-container iframe{
+        width: 85%;
+        height: 100px;
+        margin-top: 20%;
+         
+     
+     }
+
+     .pagescreen h1{
+       font-size: 1.5rem;
+    }
+ 
+    
+}
+
+

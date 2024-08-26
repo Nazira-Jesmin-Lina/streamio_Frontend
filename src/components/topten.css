@@ -1,0 +1,96 @@
+.ten{
+    display: flex;
+    flex-direction: column;
+    background-color:black;
+    padding: 2rem 4rem;
+    padding-bottom: 0;
+    height: 330px;
+    justify-content: space-between;
+    align-items: start;
+    overflow-x: scroll;
+}
+
+.ten::-webkit-scrollbar{
+    display: none;
+}
+
+.ten h1{
+    color: white;
+   position:absolute;
+  
+   
+}
+
+.container-sec {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; 
+    position: relative;
+    margin-top: 6%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.container-sec::-webkit-scrollbar {
+    display: none;
+}
+
+.topten-sec {
+    display: flex;
+    padding-right: -30%;
+}
+
+.topten-sec iframe {
+    margin-right: -20%;
+    z-index: 1;
+    transition: 0.2s ease-in-out;
+}
+
+
+.topten-sec iframe:hover {
+   transform: scale(1.1);
+  
+}
+
+.topten-sec h1 {
+    font-size: 17.5rem;
+    margin-top: -18%; 
+    margin-right: -8%;
+    margin-left: -5%;
+    position: relative;
+    color: #000;
+    -webkit-text-stroke: 2px white; 
+    text-shadow: -1px -1px 0 #000,  
+                 1px -1px 0 #000,
+                 -1px 1px 0 #000,
+                 1px 1px 0 #000; 
+    z-index: 0;
+}
+
+
+@media screen and (max-width:850px) {
+
+    .topten-sec {
+       
+        margin-top: 7%;
+        margin-right: 22%;
+    }
+
+    .topten-sec iframe{
+        width: 350%;
+       height: 150px;
+       margin-right: 10%;
+       margin-left: -18%;
+         
+     
+     }
+
+     .topten-sec h1 {
+       font-size: 12.5rem;
+       margin-top: -55%; 
+     
+       
+    }
+ 
+    
+}
