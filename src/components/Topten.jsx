@@ -1,104 +1,53 @@
-import React from 'react'
-import './topten.css'
+import './topten.css';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; 
 
 export default function Topten(props) {
+  const [content, setContent] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const options = {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxYTliMjRjZWU3YzI5NmIwMzFmNzBiNTc1ZGE1ODBjNyIsIm5iZiI6MTcyNDY3NzI5MS44MzUwMDQsInN1YiI6IjY2Y2M3ODA3OWQ2MjhjZDJlYTMyOWUwNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ITtBRF2mUWsLl34uH3MImoDnmFbqkM69BlMKMyTfXCg'
+        }
+      };
+
+      try {
+        const response = await fetch('https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1', options);
+        if (response.ok) {
+          const data = await response.json();
+          setContent(data.results.slice(0, 10)); // Get the top 10 items
+        } else {
+          console.error('Error:', response.statusText);
+        }
+      } catch (e) {
+        console.error('Fetch error:', e);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className='ten'>
-      <h1>{props.title}</h1>
-      <div className='container-sec'>
-        <div className='topten-sec'>
-        <h1>1</h1>
-        <iframe width="400" height="200" src={props.link1}
-            frameborder="20" 
-            allowfullscreen
-            ></iframe>
-            
+  <h1>{props.title}</h1>
+  <div className='container-sec'>
+    {content.map((item, index) => (
+      <div key={index} className='topten-sec'>
+        <h1>{index + 1}</h1>
+        <div className='img-text-container'>
+        <Link to={`/detailpage/${item.id}/tv`}>  {/* Link to the detailpage with the movie id */}
+          <img alt='Top TV Show' src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`} />
+        </Link>
+          <h2>{item?.name}</h2>
         </div>
-         
-
-    <div className='topten-sec'>
-    <h1>2</h1>
-      <iframe width="400" height="200" src={props.link2}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-        
       </div>
+    ))}
+  </div>
+</div>
 
-      <div className='topten-sec'>
-      <h1>3</h1>
-      <iframe width="400" height="200" src={props.link3}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-        
-      </div>
-
-      <div className='topten-sec'>
-      <h1>4</h1>
-      <iframe width="400" height="200" src={props.link4}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-        
-      </div>
-
-      <div className='topten-sec'>
-      <h1>5</h1>
-      <iframe width="400" height="200" src={props.link5}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-        
-      </div>
-
-      <div className='topten-sec'>
-      <h1>6</h1>
-      <iframe width="400" height="200" src={props.link6}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-        
-      </div>
-
-      <div className='topten-sec'>
-      <h1>7</h1>
-      <iframe width="400" height="200" src={props.link7}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-        
-      </div>
-
-      <div className='topten-sec'>
-      <h1>8</h1>
-      <iframe width="400" height="200" src={props.link8}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-        
-      </div>
-
-      <div className='topten-sec'>
-      <h1>9</h1>
-      <iframe width="400" height="200" src={props.link9}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-        
-      </div>
-
-      <div className='topten-sec'>
-      <h1>10</h1>
-      <iframe width="400" height="200" src={props.link10}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-        
-      </div>
-
-      </div>
-      
-    </div>
-  )
+  );
 }

@@ -5,7 +5,7 @@ import Home from './Home'
 
 export default function Search() {
   return (
-    <div>
+    <div className='responsive-media'>
       <Home/>
       <input className='search-box' placeholder='Search here'>
       </input>

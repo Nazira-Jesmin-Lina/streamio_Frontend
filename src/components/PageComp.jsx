@@ -1,98 +1,27 @@
-import React from 'react'
-import './pagecomp.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './pagecomp.css';
 
-export default function PageComp(props) {
+export default function PageComp({ title, content = [], type }) {
+  if (!Array.isArray(content) || content.length === 0) {
+    return <div>No content available</div>;
+  }
+
   return (
     <div className='pagescreen'>
-        <h1>{props.title}</h1>
+      <h1>{title}</h1>
       <div className='movies-container'>
-      <iframe width="350" height="200" src={props.link1}
-         frameborder="20" 
-          allowfullscreen
-         ></iframe>
-
-        <iframe width="350" height="200" src={props.link2}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-
-        <iframe width="350" height="200" src={props.link3}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-
-        <iframe width="350" height="200" src={props.link4}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-      </div>
-      
-
-      <div className='movies-container'>
-      <iframe width="350" height="200" src={props.link1}
-         frameborder="20" 
-          allowfullscreen
-         ></iframe>
-
-        <iframe width="350" height="200" src={props.link2}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-
-        <iframe width="350" height="200" src={props.link3}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-
-        <iframe width="350" height="200" src={props.link4}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-      </div>
-
-       <div className='movies-container'>
-      <iframe width="350" height="200" src={props.link1}
-         frameborder="20" 
-          allowfullscreen
-         ></iframe>
-
-        <iframe width="350" height="200" src={props.link2}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-
-        <iframe width="350" height="200" src={props.link3}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-
-        <iframe width="350" height="200" src={props.link4}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-      </div>
-
-      <div className='movies-container'>
-      <iframe width="350" height="200" src={props.link1}
-         frameborder="20" 
-          allowfullscreen
-         ></iframe>
-
-        <iframe width="350" height="200" src={props.link2}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-
-        <iframe width="350" height="200" src={props.link3}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
-
-        <iframe width="350" height="200" src={props.link4}
-         frameborder="20" 
-         allowfullscreen
-         ></iframe>
+        {content.map((item) => (
+          <div key={item.id} className='image-text-div'>
+            <Link to={`/detailpage/${item.id}/${type}`}>
+              <img
+                alt={item.title}
+                src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+              />
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
-  )
+  );
 }
